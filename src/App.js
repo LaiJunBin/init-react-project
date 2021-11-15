@@ -1,24 +1,22 @@
+import routes from 'const/routes'
+import { useParamNavigate } from 'hooks/useParamNavigate'
+import Home from 'pages/Home'
+import Test from 'pages/Test'
 import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import { Routes, Route } from 'react-router-dom'
 
 function App() {
+  const navigate = useParamNavigate()
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Welcome to React Router!</h1>
+      <button onClick={() => navigate(routes.home)}>Home</button>
+      <button onClick={() => navigate(routes.test, { id: 1 })}>Test</button>
+      <Routes>
+        <Route path={routes.home} element={<Home />} />
+        <Route path={routes.test} element={<Test />} />
+      </Routes>
     </div>
   )
 }
